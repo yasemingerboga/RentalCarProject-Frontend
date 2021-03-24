@@ -5,6 +5,37 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
+<div class="container">
+    <div class="row">
+      <div class="mb-3 col-md-3">
+        <input
+          type="text"
+          [(ngModel)]="filterTextCar"
+          class="form-control"
+          id="filterTextCar"
+          placeholder="Search Cars"
+        />
+        <div *ngIf="filterTextCar.length > 2" class="alert alert-success">
+          {{ filterTextCar }}
+          </div>
+      </div>
+      <div class="col-md-3">
+        <select [(ngModel)]="selectedBrand" class="form-select" aria-label="Default select example">
+          <option *ngFor="let brand of brands" value="{{brand.brandId}}" >{{brand.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select [(ngModel)]="selectedColor" class="form-select" aria-label="Default select example">
+          <option *ngFor="let color of colors" value="{{color.colorId}}">{{color.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-3" >
+          <button 
+          (click)="search(selectedBrand,selectedColor)" 
+          class="btn btn-outline-success" type="submit">Search</button>
+      </div>
+    </div>
+  </div>
 <table *ngIf="dataLoaded != false" class="table table-bordered table-hover">
   <thead>
     <tr>
@@ -20,8 +51,8 @@
   <tbody>
     <tr
       (click)="setCurrentCar(car)"
-      routerLink="/cars/cardetails/{{ car.carId }}"
-      *ngFor="let car of cars"
+      routerLink="/cars/cardetails/{{ car.carId }} "
+      *ngFor="let car of cars |carFilterPipe:filterTextCar"
       [class]="getCurrentCarClass(car)"
     >
       <td>{{ car.carId }}</td>

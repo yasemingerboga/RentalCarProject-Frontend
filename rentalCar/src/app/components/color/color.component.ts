@@ -25,10 +25,14 @@ export class ColorComponent implements OnInit {
   setCurrentColor(color:Color){
     this.currentColor=color;
   }
+  resetCurrentColor(){
+    this.currentColor={colorId:0,name:""};
+  }
   getCurrentColorClass(color:Color){
     if (color == this.currentColor) {
       return 'list-group-item active';
-    } else return 'list-group-item';
+    }
+     else return 'list-group-item';
   }
   getAllColorClass(){
     if (!this.currentColor) {
