@@ -31,6 +31,9 @@ export class BrandComponent implements OnInit {
       return 'list-group-item active';
     } else return 'list-group-item';
   }
+  resetCurrentBrand(){
+    this.currentBrand={brandId:0,name:""}
+  }
   getAllBrandClass(){
     if (!this.currentBrand) {
       return 'list-group-item active';

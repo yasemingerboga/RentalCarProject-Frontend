@@ -1,31 +1,18 @@
-<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-<table *ngIf="dataLoaded!=false" class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Brand Name</th>
-        </tr>
-    </thead>
-    <tr (click)="setCurrentBrand(brand)"
-    routerLink="/cars/brand/{{brand.brandId}}"
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+<ul class="list-group" *ngIf="dataLoaded != false">
+  <li [class]="getAllBrandClass()" (click)="resetCurrentBrand()" routerLink="/cars">All Brands</li>
+  <li
+    (click)="setCurrentBrand(brand)"
+    routerLink="/cars/brand/{{ brand.brandId }}"
     *ngFor="let brand of brands"
     [class]="getCurrentBrandClass(brand)"
-    >
-        <td>{{brand.brandId}}</td>
-        <td>{{brand.name}}</td>
-    </tr>
-</table>  -->
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-<ul class="list-group" *ngIf="dataLoaded!=false">
-  <h3 class="blockquote text-center">Brands</h3>
-    <li  [class]="getAllBrandClass()" routerLink = "/cars">All Brands</li>
-      <li (click)="setCurrentBrand(brand)"
-      routerLink="/cars/brand/{{brand.brandId}}"
-    *ngFor="let brand of brands"
-    [class]="getCurrentBrandClass(brand)">
-    {{brand.name}}</li>
-    </ul>
+  >
+    {{ brand.name }}
+  </li>
+</ul>
