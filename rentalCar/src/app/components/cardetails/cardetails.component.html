@@ -1,76 +1,98 @@
-<div class="card">
-  <div class="card-header text-center">
-    <div class="card-body">
-      <div
-        id="carouselExampleControls"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
+<div class="alert alert-danger" role="alert" *ngIf="!rentStatus">
+  Sorry, the car has already been rented.
+</div>
+  <div class="card">
+    <div class="card-header text-center">
+      <div class="card-body">
         <div
-          class="carousel-inner d-flex"
-          style="height: 50vh; min-height: 20rem; max-height: 30rem"
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
         >
           <div
-            *ngFor="let image of carImages; let index = index"
-            [ngClass]="sliderItemActive(index)"
+            class="carousel-inner d-flex"
+            style="height: 50vh; min-height: 20rem; max-height: 30rem"
           >
-            <img
-              src="{{ imageUrl + image.imagePath }}"
-              class=""
-              style="height: 100%; width: 100%; object-fit: contain"
-              alt="First slide"
-            />
+            <div
+              *ngFor="let image of carImages; let index = index"
+              [ngClass]="sliderItemActive(index)"
+            >
+              <img
+                src="{{ imageUrl + image.imagePath }}"
+                class=""
+                style="height: 100%; width: 100%; object-fit: contain"
+                alt="First slide"
+              />
+            </div>
           </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
   </div>
-</div>
-<div class="row ml-0 mr-0">
-  <div class="col-md-8 offset-md-2">
-    <div *ngIf="dataLoaded_carDetails != false">
-      <table class="table table-bordered" *ngFor="let car of cars">
-        <tbody>
-          <tr>
-            <th>Brand</th>
-            <td>{{ car.brandName }}</td>
-          </tr>
-          <tr>
-            <th>Model</th>
-            <td>{{ car.carName }}</td>
-          </tr>
-          <tr>
-            <th>Color</th>
-            <td>{{ car.colorName }}</td>
-          </tr>
-          <tr>
-            <th>Model Year</th>
-            <td>{{ car.modelYear }}</td>
-          </tr>
-          <tr>
-            <th>Daily Price</th>
-            <td>{{ car.dailyPrice }}$</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="row ml-0 mr-0">
+    <div class="col-md-8 offset-md-2">
+      <div *ngIf="dataLoaded_carDetails != false" >
+        <table class="table table-bordered" *ngFor="let car of cars" >
+          <tbody >
+            <tr>
+              <th>Brand</th>
+              <td>{{ car.brandName }}</td>
+            </tr>
+            <tr>
+              <th>Model</th>
+              <td>{{ car.carName }}</td>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <td>{{ car.colorName }}</td>
+            </tr>
+            <tr>
+              <th>Model Year</th>
+              <td>{{ car.modelYear }}</td>
+            </tr>
+            <tr>
+              <th>Daily Price</th>
+              <td>{{ car.dailyPrice }}$</td>
+            </tr>
+          </tbody>
+        </table>
+          <div class="d-grid gap-2" *ngIf="!rentStatus">
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="toastrOptions()" 
+              >
+              Rent
+            </button>
+          </div>
+          <div class="d-grid gap-2" *ngIf="rentStatus">
+            <button *ngFor="let car of cars"
+            routerLink="/rent/car/{{ car.carId }}"
+              type="button"
+              class="btn btn-success"
+              (click)="toastrOptions()"
+            >
+              Rent
+            </button>
+        </div>
+      </div>
     </div>
   </div>
-</div>

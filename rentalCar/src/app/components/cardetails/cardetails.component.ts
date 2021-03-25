@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
+import { Rental } from 'src/app/models/rental';
 import { CarService } from 'src/app/services/car.service';
 import { CarimageService } from 'src/app/services/carimage.service';
+import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
   selector: 'app-cardetails',
@@ -17,15 +20,19 @@ export class CardetailsComponent implements OnInit {
   images:string[];
   dataLoaded_images=false;
   dataLoaded_carDetails=false;
+  rentStatus:boolean=false;
   constructor(private carImageService:CarimageService, 
     private carService:CarService, 
-    private activatedRoute:ActivatedRoute) { }
+    private activatedRoute:ActivatedRoute,
+    private rentalService:RentalService,
+    private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if(params["carId"]){
         this.getCarsByCarId(params["carId"]);
         this.getAllImagesByCarId(params["carId"]);
+        this.isValid(params["carId"]);
       }
       else{
         console.log("Id alınamadı.");
@@ -51,5 +58,18 @@ export class CardetailsComponent implements OnInit {
     else{
       return "carousel-item";
     }
-  } 
+  }
+  isValid(carId:number){
+    this.rentalService.getRentalsByCarId(carId).subscribe(response=>{
+      this.rentStatus=response.success;
+    })
+  }
+  toastrOptions(){
+    if(this.rentStatus===true){
+      this.toastrService.success("You are redirected to the payment page.");
+    }
+    else{
+      this.toastrService.error("Sorry, the car has already been rented.");
+    }
+  }
 }
