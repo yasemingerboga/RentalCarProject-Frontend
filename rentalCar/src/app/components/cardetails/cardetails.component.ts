@@ -21,6 +21,9 @@ export class CardetailsComponent implements OnInit {
   dataLoaded_images=false;
   dataLoaded_carDetails=false;
   rentStatus:boolean=false;
+  returnDate:Date;
+  rentDate:Date;
+  templateRental:Rental[];
   constructor(private carImageService:CarimageService, 
     private carService:CarService, 
     private activatedRoute:ActivatedRoute,
@@ -33,6 +36,9 @@ export class CardetailsComponent implements OnInit {
         this.getCarsByCarId(params["carId"]);
         this.getAllImagesByCarId(params["carId"]);
         this.isValid(params["carId"]);
+      }
+      else if(params["rentDate"]&& params["carId"]){
+        this.isValidForDate(params["rentDate"],params["carId"]);
       }
       else{
         console.log("Id alınamadı.");
@@ -72,4 +78,10 @@ export class CardetailsComponent implements OnInit {
       this.toastrService.error("Sorry, the car has already been rented.");
     }
   }
+  isValidForDate(rentDate:Date,carId:number){
+    this.rentalService.checkAvailability(rentDate,carId).subscribe(response=>{
+      this.rentStatus=response.success;
+    })
+  }
+  
 }
