@@ -25,4 +25,8 @@ export class RentalService {
     let newpath=this.apiUrl+"isValid?carId="+carId;
     return this.httpClient.get<ResponseModel>(newpath);
   }
+  checkAvailability(rentDate:Date,carId:number){
+    let newpath=this.apiUrl+"/checkavailability?rentDate="+rentDate+"&carId="+carId;
+    return this.httpClient.get<ResponseModel>(newpath);
+  }
 }
