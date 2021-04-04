@@ -9,7 +9,7 @@
           <div class="col-sm-7 border-line pb-3">
             <div class="form-group">
               <p class="text-secondary text-sm mb-0">Name on the card</p>
-              <input type="text" placeholder="Name" size="15" />
+              <input type="text" placeholder="Name" size="15" required="required"/>
             </div>
             <div class="form-group">
               <p class="text-secondary text-sm mb-0">Card Number</p>
@@ -19,6 +19,7 @@
                 type="number"
                 placeholder="0000 0000 0000 0000"
                 size="18"
+                required="required"
                 />
               </div>
             </div>
@@ -31,6 +32,7 @@
                 size="6"
                 minlength="2"
                 maxlength="2"
+                required="required"
                 routerLink="/payment/{{cardNumber}}"
               />
               <input
@@ -40,6 +42,7 @@
                 size="6"
                 minlength="2"
                 maxlength="2"
+                required="required"
               />
               
             </div>
@@ -51,6 +54,7 @@
                 size="1"
                 minlength="3"
                 maxlength="3"
+                required="required"
               />
             </div>
           </div>

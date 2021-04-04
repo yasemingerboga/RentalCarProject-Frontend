@@ -5,6 +5,7 @@ import { Brand } from '../models/brand';
 import { Car } from '../models/car';
 import { Color } from '../models/color';
 import { ListResponseModel } from '../models/listResponseModel';
+import { ResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,9 @@ export class CarService {
   getCarDetailsWithParameters(selectedColor:number,selectedBrand:number):Observable<ListResponseModel<Car>>{
     let newPath=this.apiUrl+"cars/getcarsbyfilter?colorId="+selectedColor+"&brandId="+selectedBrand;
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  }
+  add(car:Car):Observable<ResponseModel>{
+    let newPath=this.apiUrl+"cars/add";
+    return this.httpClient.post<ResponseModel>(newPath,car);
   }
 }

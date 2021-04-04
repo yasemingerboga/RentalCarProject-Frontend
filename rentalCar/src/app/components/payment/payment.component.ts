@@ -33,6 +33,8 @@ export class PaymentComponent implements OnInit {
   check(cardNumber:string){
     this.paymentService.CheckCreditCard(cardNumber).subscribe(response=>{
       this.cardValid=response.success;
+    },errorResponse=>{
+      this.cardValid=errorResponse.success;
     })
   }
   toastrOptions(){

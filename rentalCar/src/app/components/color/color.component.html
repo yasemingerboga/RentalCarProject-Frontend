@@ -15,12 +15,16 @@
 <ul class="list-group" *ngIf="dataLoaded != false">
   <h3 class="blockquote text-center">Colors</h3>
   <li  [class]="getAllColorClass()" routerLink="/cars" (click)="resetCurrentColor()">All Colors</li>
-  <li
+  <div *ngFor="let color of colors">
+    <li
     (click)="setCurrentColor(color)"
     routerLink="/cars/color/{{ color.colorId }}"
-    *ngFor="let color of colors"
     [class]="getCurrentColorClass(color)"
   >
     {{ color.name}}
   </li>
+  <li class="list-group-item"> <button class=" btn btn-outline-primary d-grid gap-2 d-md-flex justify-content-md-end"
+    (click)="setCurrentColor(color)"
+    routerLink="/color/update/{{ color.colorId }}">Update</button></li>
+  </div>
 </ul>
