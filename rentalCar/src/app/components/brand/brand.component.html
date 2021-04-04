@@ -6,13 +6,25 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <ul class="list-group" *ngIf="dataLoaded != false">
-  <li [class]="getAllBrandClass()" (click)="resetCurrentBrand()" routerLink="/cars">All Brands</li>
   <li
-    (click)="setCurrentBrand(brand)"
-    routerLink="/cars/brand/{{ brand.brandId }}"
-    *ngFor="let brand of brands"
-    [class]="getCurrentBrandClass(brand)"
+    [class]="getAllBrandClass()"
+    (click)="resetCurrentBrand()"
+    routerLink="/cars"
   >
-    {{ brand.name }}
+    All Brands
   </li>
+  <div class="content">
+    <div *ngFor="let brand of brands">
+        <li
+        (click)="setCurrentBrand(brand)"
+        routerLink="/cars/brand/{{ brand.brandId }}"
+        [class]="getCurrentBrandClass(brand)"
+      >
+        {{ brand.name }}
+    </li>
+    <li class="list-group-item"> <button class=" btn btn-outline-primary d-grid gap-2 d-md-flex justify-content-md-end"
+      (click)="setCurrentBrand(brand)"
+      routerLink="/brand/update/{{ brand.brandId }}">Update</button></li>
+    </div>
+  </div>
 </ul>
