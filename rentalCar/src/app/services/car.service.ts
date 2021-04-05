@@ -6,6 +6,7 @@ import { Car } from '../models/car';
 import { Color } from '../models/color';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
+import { SingleResponseModel } from '../models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,10 @@ export class CarService {
   }
   add(car:Car):Observable<ResponseModel>{
     let newPath=this.apiUrl+"cars/add";
+    return this.httpClient.post<ResponseModel>(newPath,car);
+  }
+  update(car:Car):Observable<ResponseModel>{
+    let newPath=this.apiUrl+"cars/update";
     return this.httpClient.post<ResponseModel>(newPath,car);
   }
 }

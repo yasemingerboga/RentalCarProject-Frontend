@@ -45,7 +45,7 @@
       <th>Car Name</th>
       <th>Model Year</th>
       <th>Daily Price</th>
-      <th>Car Name</th>
+      <th>Update</th>
     </tr>
   </thead>
   <tbody>
@@ -61,7 +61,7 @@
       <td>{{ car.carName }}</td>
       <td>{{ car.modelYear }}</td>
       <td>{{ car.dailyPrice }}</td>
-      <td>{{ car.carName }}</td>
+      <td><button type="button" class="btn btn-outline-primary" routerLink="/car/update/{{ car.carId }}">Update</button></td>
     </tr>
   </tbody>
 </table>
