@@ -39,7 +39,6 @@ export class BrandUpdateComponent implements OnInit {
     if (this.brandUpdateForm.valid) {
       let newBrandModel = Object.assign({}, this.brandUpdateForm.value);
       newBrandModel.brandId = this.currentBrand.brandId;
-      console.log(newBrandModel);
       this.brandService.update(newBrandModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Success');
