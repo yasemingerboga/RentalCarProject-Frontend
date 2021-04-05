@@ -1,0 +1,107 @@
+<div class="content">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Update Car</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="carUpdateForm">
+            <div class="mb-3">
+              <label for="name">Name of Car</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="name"
+                  formControlName="name"
+                  class="form-control"
+                  placeholder="Name of Car"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="brandId">Name of Brand</label>
+              <div class="form-group">
+                <select
+                  class="form-control form-select mb-3"
+                  name="brandId"
+                  id="brandId"
+                  formControlName="brandId"
+                  aria-label=".form-select-lg example"
+                >
+                  <option selected>Select color</option>
+                  <option
+                    selected
+                    *ngFor="let brand of brands"
+                    [ngValue]="brand.brandId"
+                  >
+                    {{ brand.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="form-group">
+                <label for="colorId">Select Color</label>
+                <select
+                  class="form-control form-select mb-3"
+                  name="colorId"
+                  id="colorId"
+                  formControlName="colorId"
+                  aria-label=".form-select-lg example"
+                >
+                  <option selected>Select color</option>
+                  <option
+                    selected
+                    *ngFor="let color of colors"
+                    [ngValue]="color.colorId"
+                  >
+                    {{ color.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="modelYear">Model Year</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="modelYear"
+                  formControlName="modelYear"
+                  class="form-control"
+                  placeholder="Model year"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="dailyPrice">Daily Price</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="dailyPrice"
+                  formControlName="dailyPrice"
+                  class="form-control"
+                  placeholder="Daily Price"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="descriptions">Description</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="descriptions"
+                  formControlName="descriptions"
+                  class="form-control"
+                  placeholder="Description"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="update()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
