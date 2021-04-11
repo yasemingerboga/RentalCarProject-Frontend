@@ -29,6 +29,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NaviAdminComponent } from './components/navi-admin/navi-admin.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UserInformationComponent } from './components/user-information/user-information.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     RegisterComponent,
     LoginComponent,
     NaviAdminComponent,
+    UserInformationComponent,
   ],
   imports: [
     BrowserModule,

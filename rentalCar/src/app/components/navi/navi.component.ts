@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginModel } from 'src/app/models/loginModel';
+import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -7,19 +9,15 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
-  isLogin:boolean;
-  constructor(private localStorageService:LocalStorageService) { }
+  user:LoginModel;
+  constructor(private localStorageService:LocalStorageService,
+    private authService:AuthService) { }
 
   ngOnInit(): void {
-    this.isLoginMethod();
-  }
-
-  isLoginMethod(){
-    if(this.localStorageService.getLocalStorage("token")){
-      this.isLogin=true;
-    }
-    else{
-      this.isLogin=false;
-    }
+    this.authService.currentUser.subscribe(user=>{
+      if(user){
+        this.user=user;
+      }
+    })
   }
 }
