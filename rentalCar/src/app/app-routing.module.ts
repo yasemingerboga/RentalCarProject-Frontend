@@ -11,6 +11,7 @@ import { ColorUpdateComponent } from './components/color-update/color-update.com
 import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserInformationComponent } from './components/user-information/user-information.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path:"color/update/:colorId",component:ColorUpdateComponent, canActivate:[LoginGuard]},
   {path:"car/update/:carId",component:CarUpdateComponent, canActivate:[LoginGuard]},
   {path:"register",component:RegisterComponent},
-  {path:"login",component:LoginComponent}
+  {path:"login",component:LoginComponent},
+  {path:"profile/:userId",component:UserInformationComponent}
 ];
 
 @NgModule({

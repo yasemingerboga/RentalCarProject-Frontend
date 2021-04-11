@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Card } from 'src/app/models/card';
 import { PaymentService } from 'src/app/services/payment.service';
 
 @Component({
