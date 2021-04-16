@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:"car/update/:carId",component:CarUpdateComponent, canActivate:[LoginGuard]},
   {path:"register",component:RegisterComponent},
   {path:"login",component:LoginComponent},
-  {path:"profile/:userId",component:UserInformationComponent}
+  {path:"profile",component:UserInformationComponent}
 ];
 
 @NgModule({
