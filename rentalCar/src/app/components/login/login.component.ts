@@ -24,15 +24,17 @@ export class LoginComponent implements OnInit {
     this.loginForm=this.formBuilder.group({
       email:["",Validators.required],
       password:["",Validators.required],
+      userId:[""]
     })
   }
 
   login(){
     if(this.loginForm.valid){
       console.log(this.loginForm.value);
-      let registerModel=Object.assign({},this.loginForm.value);
-      this.authService.login(registerModel).subscribe(response=>{
+      let loginModel=Object.assign({},this.loginForm.value);
+      this.authService.login(loginModel).subscribe(response=>{
         this.toastrService.info(response.message);
+        loginModel.userId=response.data.userId;
         this.localStorageService.setLocalStorage("token",response.data.token);
       },responseError=>{
         this.toastrService.error(responseError.error);

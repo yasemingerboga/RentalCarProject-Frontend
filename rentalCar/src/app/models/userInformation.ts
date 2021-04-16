@@ -4,4 +4,5 @@ export interface UserInformation{
     email:string;
     findekspoint:string;
     imagePath:string;
+    userId:number;
 }

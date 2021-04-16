@@ -47,7 +47,7 @@
           >
             <li><button class="dropdown-item" routerLink="#">New project...</button></li>
             <li><button class="dropdown-item" routerLink="#">Settings</button></li>
-            <li><button class="dropdown-item" routerLink="profile/{{ user.userId }}">Profile</button></li>
+            <li><button class="dropdown-item" [routerLink]="['profile']">Profile</button></li>
             <li><hr class="dropdown-divider" /></li>
             <li><button class="dropdown-item" routerLink="#">Sign out</button></li>
           </ul>
